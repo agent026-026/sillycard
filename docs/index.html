@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sillycard · 在macOS, iOS 双平台上进行Silly Tavern本地角色卡管理</title>
-  <meta name="description" content="Sillycard：在 macOS, iOS 双平台 上浏览、预览与编辑符合 Silly Tavern 规范的 PNG 角色卡；元数据存于本机所选文件，无云端同步与 AI 生成。">
+  <title>Sillycard · Local Silly Tavern character cards on macOS and iOS</title>
+  <meta name="description" content="Sillycard: browse, preview, and edit Silly Tavern–compatible PNG character cards on macOS and iOS; metadata stays in files you choose—no cloud sync or built-in AI generation.">
   <style>
     :root {
       color-scheme: light dark;
@@ -29,7 +29,7 @@
     }
     * { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Yu Gothic UI", "Meiryo", sans-serif;
       line-height: 1.65;
       color: var(--fg);
       background: var(--bg);
@@ -55,6 +55,25 @@
       padding: 0.2rem 0.5rem;
       border-radius: 6px;
       margin-top: 0.75rem;
+    }
+    .lang-switch {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .lang-switch label { font-weight: 500; color: var(--fg); }
+    .lang-switch select {
+      font: inherit;
+      color: var(--fg);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.35rem 0.5rem;
+      max-width: 100%;
     }
     section {
       background: var(--card);
@@ -90,73 +109,83 @@
 </head>
 <body>
   <header>
+    <div class="lang-switch">
+      <label for="lang-select" data-i18n="lang_label">Language</label>
+      <select id="lang-select">
+        <option value="en">English</option>
+        <option value="zh-Hans">简体中文</option>
+        <option value="ja">日本語</option>
+        <option value="ru">Русский</option>
+        <option value="zh-Hant">繁體中文</option>
+      </select>
+    </div>
     <h1>Sillycard</h1>
-    <p class="subtitle">本地 PNG 角色卡（Silly Tavern 规范）· </p>
-    <span class="badge">工具</span>
+    <p class="subtitle" data-i18n="subtitle"></p>
+    <span class="badge" data-i18n="badge"></span>
   </header>
 
   <section id="product">
-    <h2>产品说明</h2>
-    <p><strong>Sillycard</strong> 面向使用 <strong>Silly Tavern</strong> 生态的角色卡作者与收藏者：在设备上<strong>打开含角色卡元数据的 PNG</strong>，按与 Silly Tavern 主程序一致的解析规则读取内嵌 JSON（<code>ccv3</code> 优先于 <code>chara</code>），进行<strong>浏览、预览常用字段与嵌入世界书、编辑并写回 PNG</strong>。</p>
-    <p>应用侧重<strong>本地文件与离线工作流</strong>：你的清单、标签筛选与界面状态保存在本应用数据区；角色卡正文和元数据以你选择或保存在本机/外置存储中的 <strong>PNG 文件</strong>为准。应用<strong>不提供</strong>云端同步、账户体系或内置大语言模型生成角色内容。</p>
+    <h2 data-i18n="product_h2"></h2>
+    <p data-i18n-html="product_p1"></p>
+    <p data-i18n-html="product_p2"></p>
   </section>
 
   <section id="features">
-    <h2>功能概要</h2>
+    <h2 data-i18n="features_h2"></h2>
     <ul>
-      <li>浏览与整理本地 <strong>PNG 角色卡</strong>（含多库、归档与标签筛选）。</li>
-      <li><strong>预览</strong>：对标 Silly Tavern 常见展示字段与嵌入世界书结构。</li>
-      <li><strong>编辑</strong>：在结构化视图与 JSON 文本间切换；保存时写回 PNG 内嵌元数据（符合上述 <code>chara</code> / <code>ccv3</code> 约定）。</li>
-      <li>支持浅色 / 深色 / 跟随系统外观（随系统实现而定）。</li>
+      <li data-i18n-html="features_li1"></li>
+      <li data-i18n-html="features_li2"></li>
+      <li data-i18n-html="features_li3"></li>
+      <li data-i18n-html="features_li4"></li>
     </ul>
   </section>
 
   <section id="support">
-    <h2>支持与反馈</h2>
-    <p>技术支持、功能建议与问题反馈请通过 GitHub 仓库联系。</p>
-    <p id="repo-link"><a href="https://github.com/agent026-026/sillycard">https://github.com/sheldonrrr/sillycard</a></p>
+    <h2 data-i18n="support_h2"></h2>
+    <p data-i18n="support_p1"></p>
+    <p id="repo-link"></p>
   </section>
 
   <section id="privacy">
-    <h2>隐私与数据</h2>
-    <p class="disclaimer-lead">以下为 Sillycard 在处理你的文件与设备数据时的说明。若你通过系统浏览器打开第三方网站，须遵守相应站点的条款与隐私政策。</p>
+    <h2 data-i18n="privacy_h2"></h2>
+    <p class="disclaimer-lead" data-i18n="privacy_lead"></p>
 
-    <h3>我们处理哪些数据</h3>
+    <h3 data-i18n="privacy_h3_1"></h3>
     <ul>
-      <li>你在应用中<strong>打开、导入或编辑的 PNG 角色卡文件</strong>：其内容与元数据由应用在本机读写，用于展示与编辑。</li>
-      <li>应用为运行而保存在沙盒内的<strong>偏好设置、库索引缓存、界面状态</strong>等，用于恢复你的使用体验。</li>
-      <li>本应用<strong>不会</strong>主动采集可用于广告定向的个人画像数据，亦<strong>不要求</strong>注册账户即可完成核心功能。</li>
+      <li data-i18n-html="privacy_li_1_1"></li>
+      <li data-i18n-html="privacy_li_1_2"></li>
+      <li data-i18n-html="privacy_li_1_3"></li>
     </ul>
 
-    <h3>我们如何使用这些数据</h3>
+    <h3 data-i18n="privacy_h3_2"></h3>
     <ul>
-      <li>仅用于在设备上<strong>呈现与管理</strong>你选择接触的角色卡文件，以及维护应用本地配置。</li>
-      <li>开发者<strong>不运营</strong>用于接收或长期存储你角色卡内容的自有后端；默认情况下<strong>不向开发者服务器上传</strong>你的 PNG 或其中 JSON。</li>
+      <li data-i18n-html="privacy_li_2_1"></li>
+      <li data-i18n-html="privacy_li_2_2"></li>
     </ul>
 
-    <h3>是否与第三方共享</h3>
+    <h3 data-i18n="privacy_h3_3"></h3>
     <ul>
-      <li><strong>不会</strong>因使用 Sillycard 核心功能而将你的角色卡内容作为默认行为传输给开发者或广告商。</li>
-      <li>若你主动使用系统共享、隔空投送、文件 App、iCloud 云盘等 Apple 或第三方服务同步文件，数据去向由<strong>你使用的系统与服务</strong>决定，不再属于本应用可控范围。</li>
+      <li data-i18n-html="privacy_li_3_1"></li>
+      <li data-i18n-html="privacy_li_3_2"></li>
     </ul>
 
-    <h3>保留期限</h3>
+    <h3 data-i18n="privacy_h3_4"></h3>
     <ul>
-      <li><strong>设备上</strong>：沙盒内数据随应用卸载或你清除应用数据而移除；PNG 文件本身保留在你保存的位置，直至你自行删除。</li>
+      <li data-i18n-html="privacy_li_4_1"></li>
     </ul>
 
-    <h3>你的选择与撤回</h3>
+    <h3 data-i18n="privacy_h3_5"></h3>
     <ul>
-      <li>你可随时停止使用本应用、删除应用或移除已授予的文件/文件夹访问权限（在系统设置中）。</li>
-      <li>请确保你对编辑与分享的内容拥有合法权利，勿利用本应用处理违法或侵权材料。</li>
+      <li data-i18n="privacy_li_5_1"></li>
+      <li data-i18n="privacy_li_5_2"></li>
     </ul>
   </section>
 
   <section id="requirements">
-    <h2>系统与说明</h2>
+    <h2 data-i18n="requirements_h2"></h2>
     <ul>
-      <li>适用于 <strong>macOS, iOS 双平台</strong>。</li>
-      <li>角色卡需为符合 Silly Tavern 惯例的 <strong>PNG</strong> 格式；解析规则与上游 <a href="https://github.com/SillyTavern/SillyTavern/blob/release/src/character-card-parser.js" rel="noopener noreferrer">character-card-parser</a> 对齐意图一致（应用版本可能随上游演进）。</li>
+      <li data-i18n-html="requirements_li1"></li>
+      <li data-i18n-html="requirements_li2"></li>
     </ul>
   </section>
 
@@ -166,20 +195,275 @@
 
   <script>
     (function () {
-      var path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/+$/, '');
-      var seg = path.split('/').filter(Boolean);
-      var user = 'agent026-026';
-      var repo = 'sillycard';
-      if (seg.length >= 2 && window.location.hostname.endsWith('github.io')) {
-        user = seg[0];
-        repo = seg[1];
-      }
-      if (user && repo) {
-        var url = 'https://github.com/' + user + '/' + repo;
-        var el = document.getElementById('repo-link');
-        if (el) {
-          el.innerHTML = '<a href="' + url + '">' + url + '</a>';
+      var STORAGE_KEY = 'sillycard_github_page_lang';
+      var LOCALES = ['en', 'zh-Hans', 'ja', 'ru', 'zh-Hant'];
+
+      var I18N = {
+        en: {
+          lang_label: 'Language',
+          title: 'Sillycard · Local Silly Tavern character cards on macOS and iOS',
+          metaDescription: 'Sillycard: browse, preview, and edit Silly Tavern–compatible PNG character cards on macOS and iOS; metadata stays in files you choose—no cloud sync or built-in AI generation.',
+          subtitle: 'Local PNG character cards (Silly Tavern format)',
+          badge: 'Utility',
+          product_h2: 'Overview',
+          product_p1: '<strong>Sillycard</strong> is for authors and collectors in the <strong>Silly Tavern</strong> ecosystem: open <strong>PNGs with embedded character metadata</strong> on your device, read the embedded JSON using the same precedence as Silly Tavern (<code>ccv3</code> over <code>chara</code>), then <strong>browse, preview common fields and embedded lorebooks, edit, and write back to the PNG</strong>.',
+          product_p2: 'The app emphasizes <strong>local files and offline workflows</strong>: your libraries, tag filters, and UI state are stored in the app’s data area; character text and metadata are the <strong>PNG files</strong> you choose or keep on-device / external storage. Sillycard <strong>does not provide</strong> cloud sync, accounts, or built-in LLM generation of character content.',
+          features_h2: 'Features',
+          features_li1: 'Browse and organize local <strong>PNG character cards</strong> (multiple libraries, archives, tag filters).',
+          features_li2: '<strong>Preview</strong>: matches common Silly Tavern display fields and embedded lorebook structure.',
+          features_li3: '<strong>Edit</strong>: switch between structured views and JSON; saving writes metadata back into the PNG (per the <code>chara</code> / <code>ccv3</code> conventions above).',
+          features_li4: 'Light / dark / follow system appearance (depending on platform implementation).',
+          support_h2: 'Support & feedback',
+          support_p1: 'For technical support, feature requests, and bug reports, please use the GitHub repository.',
+          privacy_h2: 'Privacy & data',
+          privacy_lead: 'Below is how Sillycard handles your files and on-device data. If you open third-party sites in the system browser, their terms and privacy policies apply.',
+          privacy_h3_1: 'What we process',
+          privacy_li_1_1: '<strong>PNG character card files</strong> you <strong>open, import, or edit</strong> in the app: content and metadata are read/written locally for display and editing.',
+          privacy_li_1_2: '<strong>Preferences, library index caches, UI state</strong>, and similar data stored in the sandbox to run the app and restore your experience.',
+          privacy_li_1_3: 'Sillycard <strong>does not</strong> actively collect ad-targeting profiles, and <strong>does not require</strong> an account for core features.',
+          privacy_h3_2: 'How we use it',
+          privacy_li_2_1: 'Only to <strong>present and manage</strong> the character card files you choose, and to maintain local app configuration.',
+          privacy_li_2_2: 'The developer <strong>does not operate</strong> a proprietary backend to receive or long-term store your character cards; by default your PNGs or JSON are <strong>not uploaded to developer servers</strong>.',
+          privacy_h3_3: 'Sharing with third parties',
+          privacy_li_3_1: '<strong>Not</strong> as a default behavior of core Sillycard features—your card content is not transmitted to the developer or advertisers.',
+          privacy_li_3_2: 'If you use system sharing, AirDrop, Files, iCloud Drive, or other Apple/third-party services, where data goes is determined by <strong>those systems and services</strong> and is outside this app’s control.',
+          privacy_h3_4: 'Retention',
+          privacy_li_4_1: '<strong>On device</strong>: sandbox data is removed when you uninstall or clear app data; PNG files remain where you saved them until you delete them.',
+          privacy_h3_5: 'Your choices',
+          privacy_li_5_1: 'You may stop using the app, delete it, or revoke file/folder access granted in system settings at any time.',
+          privacy_li_5_2: 'Ensure you have rights to the content you edit and share; do not use Sillycard for illegal or infringing material.',
+          requirements_h2: 'Platform & notes',
+          requirements_li1: 'Available on <strong>macOS and iOS</strong>.',
+          requirements_li2: 'Cards should be <strong>PNG</strong> following Silly Tavern conventions; parsing aims to stay aligned with upstream <a href="https://github.com/SillyTavern/SillyTavern/blob/release/src/character-card-parser.js" rel="noopener noreferrer">character-card-parser</a> (the app may evolve with upstream).'
+        },
+        'zh-Hans': {
+          lang_label: '语言',
+          title: 'Sillycard · 在 macOS、iOS 双平台上进行 Silly Tavern 本地角色卡管理',
+          metaDescription: 'Sillycard：在 macOS、iOS 双平台上浏览、预览与编辑符合 Silly Tavern 规范的 PNG 角色卡；元数据存于本机所选文件，无云端同步与 AI 生成。',
+          subtitle: '本地 PNG 角色卡（Silly Tavern 规范）',
+          badge: '工具',
+          product_h2: '产品说明',
+          product_p1: '<strong>Sillycard</strong> 面向使用 <strong>Silly Tavern</strong> 生态的角色卡作者与收藏者：在设备上<strong>打开含角色卡元数据的 PNG</strong>，按与 Silly Tavern 主程序一致的解析规则读取内嵌 JSON（<code>ccv3</code> 优先于 <code>chara</code>），进行<strong>浏览、预览常用字段与嵌入世界书、编辑并写回 PNG</strong>。',
+          product_p2: '应用侧重<strong>本地文件与离线工作流</strong>：你的清单、标签筛选与界面状态保存在本应用数据区；角色卡正文和元数据以你选择或保存在本机/外置存储中的 <strong>PNG 文件</strong>为准。应用<strong>不提供</strong>云端同步、账户体系或内置大语言模型生成角色内容。',
+          features_h2: '功能概要',
+          features_li1: '浏览与整理本地 <strong>PNG 角色卡</strong>（含多库、归档与标签筛选）。',
+          features_li2: '<strong>预览</strong>：对标 Silly Tavern 常见展示字段与嵌入世界书结构。',
+          features_li3: '<strong>编辑</strong>：在结构化视图与 JSON 文本间切换；保存时写回 PNG 内嵌元数据（符合上述 <code>chara</code> / <code>ccv3</code> 约定）。',
+          features_li4: '支持浅色 / 深色 / 跟随系统外观（随系统实现而定）。',
+          support_h2: '支持与反馈',
+          support_p1: '技术支持、功能建议与问题反馈请通过 GitHub 仓库联系。',
+          privacy_h2: '隐私与数据',
+          privacy_lead: '以下为 Sillycard 在处理你的文件与设备数据时的说明。若你通过系统浏览器打开第三方网站，须遵守相应站点的条款与隐私政策。',
+          privacy_h3_1: '我们处理哪些数据',
+          privacy_li_1_1: '你在应用中<strong>打开、导入或编辑的 PNG 角色卡文件</strong>：其内容与元数据由应用在本机读写，用于展示与编辑。',
+          privacy_li_1_2: '应用为运行而保存在沙盒内的<strong>偏好设置、库索引缓存、界面状态</strong>等，用于恢复你的使用体验。',
+          privacy_li_1_3: '本应用<strong>不会</strong>主动采集可用于广告定向的个人画像数据，亦<strong>不要求</strong>注册账户即可完成核心功能。',
+          privacy_h3_2: '我们如何使用这些数据',
+          privacy_li_2_1: '仅用于在设备上<strong>呈现与管理</strong>你选择接触的角色卡文件，以及维护应用本地配置。',
+          privacy_li_2_2: '开发者<strong>不运营</strong>用于接收或长期存储你角色卡内容的自有后端；默认情况下<strong>不向开发者服务器上传</strong>你的 PNG 或其中 JSON。',
+          privacy_h3_3: '是否与第三方共享',
+          privacy_li_3_1: '<strong>不会</strong>因使用 Sillycard 核心功能而将你的角色卡内容作为默认行为传输给开发者或广告商。',
+          privacy_li_3_2: '若你主动使用系统共享、隔空投送、文件 App、iCloud 云盘等 Apple 或第三方服务同步文件，数据去向由<strong>你使用的系统与服务</strong>决定，不再属于本应用可控范围。',
+          privacy_h3_4: '保留期限',
+          privacy_li_4_1: '<strong>设备上</strong>：沙盒内数据随应用卸载或你清除应用数据而移除；PNG 文件本身保留在你保存的位置，直至你自行删除。',
+          privacy_h3_5: '你的选择与撤回',
+          privacy_li_5_1: '你可随时停止使用本应用、删除应用或移除已授予的文件/文件夹访问权限（在系统设置中）。',
+          privacy_li_5_2: '请确保你对编辑与分享的内容拥有合法权利，勿利用本应用处理违法或侵权材料。',
+          requirements_h2: '系统与说明',
+          requirements_li1: '适用于 <strong>macOS、iOS 双平台</strong>。',
+          requirements_li2: '角色卡需为符合 Silly Tavern 惯例的 <strong>PNG</strong> 格式；解析规则与上游 <a href="https://github.com/SillyTavern/SillyTavern/blob/release/src/character-card-parser.js" rel="noopener noreferrer">character-card-parser</a> 对齐意图一致（应用版本可能随上游演进）。'
+        },
+        ja: {
+          lang_label: '言語',
+          title: 'Sillycard · macOS / iOS でのローカル Silly Tavern キャラクターカード管理',
+          metaDescription: 'Sillycard：macOS と iOS で Silly Tavern 互換の PNG キャラクターカードを閲覧・プレビュー・編集。メタデータは選択したファイルに保存。クラウド同期や組み込み AI 生成はありません。',
+          subtitle: 'ローカル PNG キャラクターカード（Silly Tavern 形式）',
+          badge: 'ユーティリティ',
+          product_h2: '概要',
+          product_p1: '<strong>Sillycard</strong> は <strong>Silly Tavern</strong> エコシステムの作者・コレクター向けです。端末上で<strong>キャラクターメタデータ入り PNG</strong>を開き、Silly Tavern と同じ優先順位（<code>ccv3</code> を <code>chara</code> より優先）で埋め込み JSON を読み取り、<strong>閲覧・主要フィールドと埋め込みロアブックのプレビュー・編集・PNG への書き戻し</strong>ができます。',
+          product_p2: 'アプリは<strong>ローカルファイルとオフライン作業</strong>を重視します。ライブラリ、タグフィルター、UI 状態はアプリのデータ領域に保存され、本文とメタデータは端末／外部ストレージ上の <strong>PNG ファイル</strong>が正とします。クラウド同期、アカウント、組み込み LLM によるキャラ生成は<strong>提供しません</strong>。',
+          features_h2: '機能',
+          features_li1: 'ローカルの <strong>PNG キャラクターカード</strong>の閲覧・整理（複数ライブラリ、アーカイブ、タグフィルター）。',
+          features_li2: '<strong>プレビュー</strong>：Silly Tavern で一般的な表示フィールドと埋め込みロアブック構造に対応。',
+          features_li3: '<strong>編集</strong>：構造化ビューと JSON テキストの切り替え。保存時に PNG 内メタデータへ書き戻し（上記 <code>chara</code> / <code>ccv3</code> の取り決めに準拠）。',
+          features_li4: 'ライト／ダーク／システムに追従（プラットフォーム実装に依存）。',
+          support_h2: 'サポートとフィードバック',
+          support_p1: '技術サポート、機能要望、不具合報告は GitHub リポジトリからお願いします。',
+          privacy_h2: 'プライバシーとデータ',
+          privacy_lead: 'Sillycard がファイルと端末上のデータをどう扱うかの説明です。システムブラウザで第三者サイトを開く場合は、各サイトの利用規約とプライバシーポリシーが適用されます。',
+          privacy_h3_1: '処理するデータ',
+          privacy_li_1_1: 'アプリで<strong>開く・インポート・編集する PNG キャラクターカード</strong>：内容とメタデータは表示・編集のため端末内で読み書きされます。',
+          privacy_li_1_2: '動作のためにサンドボックス内に保存される<strong>設定、ライブラリ索引キャッシュ、UI 状態</strong>など。',
+          privacy_li_1_3: '広告ターゲティング用のプロファイルを<strong>積極的に収集しません</strong>。コア機能に<strong>アカウント登録は不要</strong>です。',
+          privacy_h3_2: '利用目的',
+          privacy_li_2_1: '選択したキャラクターカードの<strong>表示・管理</strong>と、ローカル設定の維持のみに使用します。',
+          privacy_li_2_2: '開発者はキャラクター内容を受け取り・長期保管する自社バックエンドを<strong>運用していません</strong>。既定では PNG や JSON を<strong>開発者サーバーへアップロードしません</strong>。',
+          privacy_h3_3: '第三者との共有',
+          privacy_li_3_1: 'Sillycard のコア機能の既定動作として、カード内容を開発者や広告主へ送ることは<strong>ありません</strong>。',
+          privacy_li_3_2: 'システム共有、AirDrop、ファイル、iCloud ドライブなどを使う場合、データの行き先は<strong>利用するシステムとサービス</strong>が決め、アプリの管理外です。',
+          privacy_h3_4: '保存期間',
+          privacy_li_4_1: '<strong>端末上</strong>：アプリ削除やデータ消去でサンドボックス内データは削除されます。PNG 本体は保存場所に残り、ユーザーが削除するまで保持されます。',
+          privacy_h3_5: '選択と撤回',
+          privacy_li_5_1: 'いつでも利用停止、アプリ削除、システム設定でのファイル／フォルダアクセス権の取り消しが可能です。',
+          privacy_li_5_2: '編集・共有する内容の権利を確保し、違法または侵害的な利用は行わないでください。',
+          requirements_h2: '動作環境と注記',
+          requirements_li1: '<strong>macOS と iOS</strong> に対応。',
+          requirements_li2: 'カードは Silly Tavern の慣例に沿った <strong>PNG</strong>。解析は上流の <a href="https://github.com/SillyTavern/SillyTavern/blob/release/src/character-card-parser.js" rel="noopener noreferrer">character-card-parser</a> と整合する意図（アプリは上流の変更に追随する場合があります）。'
+        },
+        ru: {
+          lang_label: 'Язык',
+          title: 'Sillycard · Локальные карточки персонажей Silly Tavern на macOS и iOS',
+          metaDescription: 'Sillycard: просмотр, предпросмотр и редактирование PNG-карточек в формате Silly Tavern на macOS и iOS; метаданные остаются в выбранных вами файлах — без облачной синхронизации и встроенной генерации ИИ.',
+          subtitle: 'Локальные PNG-карточки персонажей (формат Silly Tavern)',
+          badge: 'Утилита',
+          product_h2: 'О приложении',
+          product_p1: '<strong>Sillycard</strong> для авторов и коллекционеров экосистемы <strong>Silly Tavern</strong>: откройте на устройстве <strong>PNG с встроенными метаданными персонажа</strong>, читайте встроенный JSON с тем же приоритетом, что и в Silly Tavern (<code>ccv3</code> важнее <code>chara</code>), затем <strong>просматривайте, предпросматривайте основные поля и встроенные лорбуки, редактируйте и записывайте обратно в PNG</strong>.',
+          product_p2: 'Приложение ориентировано на <strong>локальные файлы и офлайн</strong>: библиотеки, фильтры по тегам и состояние интерфейса хранятся в области данных приложения; текст карточки и метаданные — это <strong>PNG-файлы</strong>, которые вы выбираете или храните на устройстве / внешнем носителе. Sillycard <strong>не предоставляет</strong> облачную синхронизацию, учётные записи или встроенную генерацию контента LLM.',
+          features_h2: 'Возможности',
+          features_li1: 'Просмотр и организация локальных <strong>PNG-карточек</strong> (несколько библиотек, архивы, фильтры по тегам).',
+          features_li2: '<strong>Предпросмотр</strong>: распространённые поля отображения Silly Tavern и структура встроенных лорбуков.',
+          features_li3: '<strong>Редактирование</strong>: переключение между структурированным видом и JSON; при сохранении метаданные записываются обратно в PNG (согласно соглашениям <code>chara</code> / <code>ccv3</code> выше).',
+          features_li4: 'Светлая / тёмная тема / как в системе (зависит от реализации на платформе).',
+          support_h2: 'Поддержка и обратная связь',
+          support_p1: 'Техподдержка, предложения по функциям и сообщения об ошибках — через репозиторий на GitHub.',
+          privacy_h2: 'Конфиденциальность и данные',
+          privacy_lead: 'Ниже описано, как Sillycard обрабатывает ваши файлы и данные на устройстве. При открытии сторонних сайтов в системном браузере действуют их условия и политики конфиденциальности.',
+          privacy_h3_1: 'Какие данные мы обрабатываем',
+          privacy_li_1_1: '<strong>PNG-файлы карточек</strong>, которые вы <strong>открываете, импортируете или редактируете</strong>: содержимое и метаданные читаются/записываются локально для отображения и редактирования.',
+          privacy_li_1_2: '<strong>Настройки, кэш индекса библиотек, состояние интерфейса</strong> и подобное в песочнице для работы приложения и восстановления сессии.',
+          privacy_li_1_3: 'Sillycard <strong>не собирает</strong> активно профили для рекламного таргетинга и <strong>не требует</strong> учётной записи для основных функций.',
+          privacy_h3_2: 'Как мы используем данные',
+          privacy_li_2_1: 'Только для <strong>отображения и управления</strong> выбранными вами файлами карточек и для локальной конфигурации приложения.',
+          privacy_li_2_2: 'Разработчик <strong>не ведёт</strong> собственный бэкенд для приёма или долгого хранения содержимого карточек; по умолчанию ваши PNG и JSON <strong>не загружаются на серверы разработчика</strong>.',
+          privacy_h3_3: 'Передача третьим лицам',
+          privacy_li_3_1: '<strong>Нет</strong> как поведения по умолчанию основных функций Sillycard — содержимое карточек не передаётся разработчику или рекламодателям.',
+          privacy_li_3_2: 'Если вы используете системный обмен, AirDrop, «Файлы», iCloud Drive и др., маршрут данных определяют <strong>эти системы и сервисы</strong> и это вне контроля приложения.',
+          privacy_h3_4: 'Хранение',
+          privacy_li_4_1: '<strong>На устройстве</strong>: данные песочницы удаляются при удалении приложения или очистке данных; сами PNG остаются там, где вы их сохранили, пока вы их не удалите.',
+          privacy_h3_5: 'Ваш выбор',
+          privacy_li_5_1: 'Вы можете в любой момент прекратить использование, удалить приложение или отозвать доступ к файлам/папкам в настройках системы.',
+          privacy_li_5_2: 'Убедитесь, что у вас есть права на редактируемый и распространяемый контент; не используйте Sillycard для незаконных или нарушающих права материалов.',
+          requirements_h2: 'Платформа и примечания',
+          requirements_li1: 'Доступно на <strong>macOS и iOS</strong>.',
+          requirements_li2: 'Карточки — <strong>PNG</strong> по соглашениям Silly Tavern; разбор стремится соответствовать upstream <a href="https://github.com/SillyTavern/SillyTavern/blob/release/src/character-card-parser.js" rel="noopener noreferrer">character-card-parser</a> (версия приложения может меняться вместе с upstream).'
+        },
+        'zh-Hant': {
+          lang_label: '語言',
+          title: 'Sillycard · 在 macOS、iOS 雙平台上進行 Silly Tavern 本機角色卡管理',
+          metaDescription: 'Sillycard：在 macOS、iOS 雙平台上瀏覽、預覽與編輯符合 Silly Tavern 規範的 PNG 角色卡；中繼資料存於本機所選檔案，無雲端同步與 AI 生成。',
+          subtitle: '本機 PNG 角色卡（Silly Tavern 規範）',
+          badge: '工具',
+          product_h2: '產品說明',
+          product_p1: '<strong>Sillycard</strong> 面向使用 <strong>Silly Tavern</strong> 生態的角色卡作者與收藏者：在裝置上<strong>開啟含角色卡元資料的 PNG</strong>，依與 Silly Tavern 主程式一致的解析規則讀取內嵌 JSON（<code>ccv3</code> 優先於 <code>chara</code>），進行<strong>瀏覽、預覽常用欄位與嵌入世界書、編輯並寫回 PNG</strong>。',
+          product_p2: '應用側重<strong>本機檔案與離線工作流程</strong>：你的清單、標籤篩選與介面狀態儲存在本應用資料區；角色卡正文與元資料以你選擇或儲存在本機／外接儲存中的 <strong>PNG 檔案</strong>為準。應用<strong>不提供</strong>雲端同步、帳戶體系或內建大型語言模型生成角色內容。',
+          features_h2: '功能概要',
+          features_li1: '瀏覽與整理本機 <strong>PNG 角色卡</strong>（含多庫、封存與標籤篩選）。',
+          features_li2: '<strong>預覽</strong>：對齊 Silly Tavern 常見顯示欄位與嵌入世界書結構。',
+          features_li3: '<strong>編輯</strong>：在結構化檢視與 JSON 文字間切換；儲存時寫回 PNG 內嵌元資料（符合上述 <code>chara</code> / <code>ccv3</code> 約定）。',
+          features_li4: '支援淺色／深色／跟隨系統外觀（隨系統實作而定）。',
+          support_h2: '支援與回饋',
+          support_p1: '技術支援、功能建議與問題回報請透過 GitHub 儲存庫聯絡。',
+          privacy_h2: '隱私與資料',
+          privacy_lead: '以下為 Sillycard 在處理你的檔案與裝置資料時的說明。若你透過系統瀏覽器開啟第三方網站，須遵守相應站點的條款與隱私權政策。',
+          privacy_h3_1: '我們處理哪些資料',
+          privacy_li_1_1: '你在應用中<strong>開啟、匯入或編輯的 PNG 角色卡檔案</strong>：其內容與元資料由應用在本機讀寫，用於顯示與編輯。',
+          privacy_li_1_2: '應用為運作而儲存在沙盒內的<strong>偏好設定、庫索引快取、介面狀態</strong>等，用於還原你的使用體驗。',
+          privacy_li_1_3: '本應用<strong>不會</strong>主動蒐集可用於廣告定向的個人畫像資料，亦<strong>不要求</strong>註冊帳戶即可完成核心功能。',
+          privacy_h3_2: '我們如何使用這些資料',
+          privacy_li_2_1: '僅用於在裝置上<strong>呈現與管理</strong>你選擇接觸的角色卡檔案，以及維護應用本機設定。',
+          privacy_li_2_2: '開發者<strong>不營運</strong>用於接收或長期儲存你角色卡內容的自有後端；預設情況下<strong>不向開發者伺服器上傳</strong>你的 PNG 或其中 JSON。',
+          privacy_h3_3: '是否與第三方共享',
+          privacy_li_3_1: '<strong>不會</strong>因使用 Sillycard 核心功能而將你的角色卡內容作為預設行為傳輸給開發者或廣告商。',
+          privacy_li_3_2: '若你主動使用系統共享、AirDrop、檔案 App、iCloud 雲碟等 Apple 或第三方服務同步檔案，資料去向由<strong>你使用的系統與服務</strong>決定，不再屬於本應用可控範圍。',
+          privacy_h3_4: '保留期限',
+          privacy_li_4_1: '<strong>裝置上</strong>：沙盒內資料隨應用解除安裝或你清除應用資料而移除；PNG 檔案本身保留在你儲存的位置，直至你自行刪除。',
+          privacy_h3_5: '你的選擇與撤回',
+          privacy_li_5_1: '你可隨時停止使用本應用、刪除應用或移除已授予的檔案／資料夾存取權限（在系統設定中）。',
+          privacy_li_5_2: '請確保你對編輯與分享的內容擁有合法權利，勿利用本應用處理違法或侵權材料。',
+          requirements_h2: '系統與說明',
+          requirements_li1: '適用於 <strong>macOS、iOS 雙平台</strong>。',
+          requirements_li2: '角色卡須為符合 Silly Tavern 慣例的 <strong>PNG</strong> 格式；解析規則與上游 <a href="https://github.com/SillyTavern/SillyTavern/blob/release/src/character-card-parser.js" rel="noopener noreferrer">character-card-parser</a> 對齊意圖一致（應用版本可能隨上游演進）。'
         }
+      };
+
+      function resolveGithubRepoUrl() {
+        var path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/+$/, '');
+        var seg = path.split('/').filter(Boolean);
+        var user = 'agent026-026';
+        var repo = 'sillycard';
+        if (seg.length >= 2 && window.location.hostname.endsWith('github.io')) {
+          user = seg[0];
+          repo = seg[1];
+        }
+        if (user && repo) {
+          return 'https://github.com/' + user + '/' + repo;
+        }
+        return 'https://github.com/agent026-026/sillycard';
+      }
+
+      function normalizeLocale(saved) {
+        if (LOCALES.indexOf(saved) !== -1) {
+          return saved;
+        }
+        return 'en';
+      }
+
+      function getInitialLocale() {
+        try {
+          return normalizeLocale(localStorage.getItem(STORAGE_KEY));
+        } catch (e) {
+          return 'en';
+        }
+      }
+
+      function applyLocale(lang) {
+        var locale = normalizeLocale(lang);
+        var dict = I18N[locale] || I18N.en;
+        document.documentElement.lang = locale;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (key && dict[key] != null) {
+            el.textContent = dict[key];
+          }
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-html');
+          if (key && dict[key] != null) {
+            el.innerHTML = dict[key];
+          }
+        });
+
+        document.title = dict.title;
+        var meta = document.querySelector('meta[name="description"]');
+        if (meta && dict.metaDescription) {
+          meta.setAttribute('content', dict.metaDescription);
+        }
+
+        var repoUrl = resolveGithubRepoUrl();
+        var repoEl = document.getElementById('repo-link');
+        if (repoEl) {
+          repoEl.innerHTML = '<a href="' + repoUrl.replace(/"/g, '&quot;') + '">' + repoUrl + '</a>';
+        }
+
+        var sel = document.getElementById('lang-select');
+        if (sel) {
+          sel.value = locale;
+        }
+
+        try {
+          localStorage.setItem(STORAGE_KEY, locale);
+        } catch (e) { /* ignore */ }
+      }
+
+      var initial = getInitialLocale();
+      applyLocale(initial);
+
+      var langSelect = document.getElementById('lang-select');
+      if (langSelect) {
+        langSelect.addEventListener('change', function () {
+          applyLocale(langSelect.value);
+        });
       }
     })();
   </script>
